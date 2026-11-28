@@ -94,7 +94,7 @@ setInterval(refreshCards, 1000); refreshCards();
 
 async function loadBench() {
   try {
-    const rows = await (await fetch('/benchmarks')).json();
+    const rows = (await (await fetch('/benchmarks')).json()).filter(r => (r.mode || 'burst') === 'burst');
     const tb = document.querySelector('#bench tbody'); tb.innerHTML = '';
     for (const r of rows) {
       const tr = document.createElement('tr');

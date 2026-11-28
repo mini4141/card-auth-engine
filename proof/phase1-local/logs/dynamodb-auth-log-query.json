@@ -1,0 +1,46 @@
+[
+  {
+    "pk": "CARD#254f50c2-49a0-413a-8b9b-729668c2e17e",
+    "sk": "TS#2026-11-28T10:26:09.975171613Z#bfafd68e-b9e5-4acf-8fa8-efd2a7cc1a10",
+    "authId": "bfafd68e-b9e5-4acf-8fa8-efd2a7cc1a10",
+    "decision": "APPROVED",
+    "reason": "OK",
+    "amount": 5000,
+    "merchant": "ProofMart",
+    "strategy": "redis-lua",
+    "latencyMs": 4
+  },
+  {
+    "pk": "CARD#254f50c2-49a0-413a-8b9b-729668c2e17e",
+    "sk": "TS#2026-11-28T10:26:09.853313338Z#1ce67f18-7798-4415-bf22-7ea2a75d4056",
+    "authId": "1ce67f18-7798-4415-bf22-7ea2a75d4056",
+    "decision": "DECLINED",
+    "reason": "INSUFFICIENT_CREDIT",
+    "amount": 30000,
+    "merchant": "ProofMart",
+    "strategy": "redis-lua",
+    "latencyMs": 6
+  },
+  {
+    "pk": "CARD#254f50c2-49a0-413a-8b9b-729668c2e17e",
+    "sk": "TS#2026-11-28T10:26:09.667432243Z#a8e77091-d673-4683-8aa8-e3bed3f466e5",
+    "authId": "a8e77091-d673-4683-8aa8-e3bed3f466e5",
+    "decision": "APPROVED",
+    "reason": "OK",
+    "amount": 9000,
+    "merchant": "ProofMart",
+    "strategy": "redis-lua",
+    "latencyMs": 184
+  },
+  {
+    "pk": "CARD#254f50c2-49a0-413a-8b9b-729668c2e17e",
+    "sk": "TS#2026-11-28T10:26:09.247801019Z#2b29b97c-3f16-413a-b09f-792d1d900a53",
+    "authId": "2b29b97c-3f16-413a-b09f-792d1d900a53",
+    "decision": "APPROVED",
+    "reason": "OK",
+    "amount": 12000,
+    "merchant": "ProofMart",
+    "strategy": "redis-lua",
+    "latencyMs": 151
+  }
+]

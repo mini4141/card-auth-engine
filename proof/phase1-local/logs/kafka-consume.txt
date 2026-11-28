@@ -1,0 +1,15 @@
+# kafka-console-consumer on card.authorizations (key = cardId), first 8 records read
+Partition:0	67231874-60b3-48f1-b4b9-df2a01348aff	{"authId":"1b108d53-e395-46d4-b31f-764d73fdabd5","cardId":"67231874-60b3-48f1-b4b9-df2a01348aff","amount":1000,"merchant":"GatlingMart","mcc":"5411","decision":"APPROVED","reason":"OK","strategy":"redis-lua","availableAfter":99000,"ts":"2026-11-28T09:38:16.011256334Z"}
+Partition:0	f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1	{"authId":"4c9eef58-83fb-4f87-af4b-821dcb8aef98","cardId":"f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1","amount":1000,"merchant":"GatlingMart","mcc":"5411","decision":"APPROVED","reason":"OK","strategy":"naive","availableAfter":99000,"ts":"2026-11-28T09:46:06.103151466Z"}
+Partition:0	f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1	{"authId":"57226aa7-21b3-46c6-a5d4-b24fe823f6ae","cardId":"f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1","amount":1000,"merchant":"GatlingMart","mcc":"5411","decision":"APPROVED","reason":"OK","strategy":"naive","availableAfter":98000,"ts":"2026-11-28T09:46:06.875070013Z"}
+Partition:0	f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1	{"authId":"94a1e4a2-06ab-410a-a510-3323936a907e","cardId":"f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1","amount":1000,"merchant":"GatlingMart","mcc":"5411","decision":"APPROVED","reason":"OK","strategy":"naive","availableAfter":97000,"ts":"2026-11-28T09:46:06.994046921Z"}
+Partition:0	f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1	{"authId":"0fbd7c0c-fa3e-4f2c-abf6-7023953b0575","cardId":"f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1","amount":1000,"merchant":"GatlingMart","mcc":"5411","decision":"APPROVED","reason":"OK","strategy":"naive","availableAfter":97000,"ts":"2026-11-28T09:46:07.036656520Z"}
+Partition:0	f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1	{"authId":"26c459bd-95b4-4996-ad6e-05e9775f0872","cardId":"f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1","amount":1000,"merchant":"GatlingMart","mcc":"5411","decision":"APPROVED","reason":"OK","strategy":"naive","availableAfter":98000,"ts":"2026-11-28T09:46:07.151405852Z"}
+Partition:0	f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1	{"authId":"f2d92f78-e67b-417c-9f9e-6b8205f55840","cardId":"f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1","amount":1000,"merchant":"GatlingMart","mcc":"5411","decision":"APPROVED","reason":"OK","strategy":"naive","availableAfter":98000,"ts":"2026-11-28T09:46:06.970854353Z"}
+Partition:0	f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1	{"authId":"987f1afe-f43e-4b06-9d32-481a7a0e2e0d","cardId":"f0c02b4a-dbfe-4e3f-80c4-e35c05ea5bd1","amount":1000,"merchant":"GatlingMart","mcc":"5411","decision":"APPROVED","reason":"OK","strategy":"naive","availableAfter":98000,"ts":"2026-11-28T09:46:07.137237388Z"}
+Processed a total of 8 messages
+
+# topic partitions
+Topic: card.authorizations	TopicId: ffIj8CpUT2ODGBYqGC0Bkw	PartitionCount: 6	ReplicationFactor: 1	Configs: 
+	Topic: card.authorizations	Partition: 0	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 
+	Topic: card.authorizations	Partition: 1	Leader: 1	Replicas: 1	Isr: 1	Elr: 	LastKnownElr: 

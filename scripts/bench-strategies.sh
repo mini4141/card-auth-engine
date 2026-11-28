@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Runs the same Gatling burst (USERS concurrent auths of AMOUNT yen against one LIMIT yen card) for every strategy
-# and writes docs/benchmarks.md + docs/benchmarks.json.
-#   scripts/bench-strategies.sh [--vt-compare] [--out DIR] [--proof DIR]
-# env: BASE_URL USERS AMOUNT LIMIT
+# For every strategy: (1) a burst of USERS concurrent auths of AMOUNT yen against one LIMIT yen card, and
+# (2) a steady-rate run. Writes docs/benchmarks.md + docs/benchmarks.json.
+#   scripts/bench-strategies.sh [--vt-compare] [--out DIR] [--proof DIR] [--strategies "a b"]
+# env: BASE_URL USERS AMOUNT LIMIT STEADY_RATE STEADY_SECONDS
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
@@ -10,6 +10,8 @@ BASE_URL="${BASE_URL:-http://localhost:8080}"
 USERS="${USERS:-1000}"
 AMOUNT="${AMOUNT:-1000}"
 LIMIT="${LIMIT:-100000}"
+export STEADY_RATE="${STEADY_RATE:-100}"
+export STEADY_SECONDS="${STEADY_SECONDS:-20}"
 OUT="docs"
 PROOF="proof/phase1-local/tests"
 VT_COMPARE=0
@@ -24,16 +26,21 @@ while [ $# -gt 0 ]; do
   shift
 done
 
+for i in $(seq 1 60); do curl -fs "$BASE_URL/actuator/health" >/dev/null 2>&1 && break; sleep 2; done
+
 WORK=".local/bench"
 rm -rf "$WORK"; mkdir -p "$WORK" "$OUT" "$PROOF"
 
-run_one() { # run_one <strategy> <label>
-  local strategy="$1" label="$2" card
+# run_one <strategy> <label> [burst|steady]; steady uses RATE/DURATION and a limit that never binds
+run_one() {
+  local strategy="$1" label="$2" mode="${3:-burst}" card
+  local amount="$AMOUNT" limit="$LIMIT"
+  if [ "$mode" = "steady" ]; then amount=10; limit=1000000000; fi
   card=$(curl -fsS -X POST "$BASE_URL/cards" -H 'Content-Type: application/json' \
-         -d "{\"holder\":\"bench-$label\",\"limit\":$LIMIT}" | sed 's/.*"id":"\([^"]*\)".*/\1/' | tr -d '\r\n')
-  echo "== $label: card $card"
-  local before; before=$(ls -1 loadtest/gatling/build/reports/gatling 2>/dev/null | sort)
-  BASE_URL="$BASE_URL" STRATEGY="$strategy" CARD_ID="$card" USERS="$USERS" AMOUNT="$AMOUNT" LIMIT="$LIMIT" \
+         -d "{\"holder\":\"bench-$label\",\"limit\":$limit}" | sed 's/.*"id":"\([^"]*\)".*/\1/' | tr -d '\r\n')
+  echo "== $label ($mode): card $card"
+  BASE_URL="$BASE_URL" STRATEGY="$strategy" CARD_ID="$card" USERS="$USERS" AMOUNT="$amount" LIMIT="$limit" \
+    MODE="$mode" RATE="$STEADY_RATE" DURATION="$STEADY_SECONDS" \
     RESULT_FILE="$PWD/$WORK/$label.json" ./gradlew :loadtest:gatling:gatlingRun --simulation=cardauth.AuthBurstSimulation \
     > "$WORK/$label.log" 2>&1 || echo "   (gatling assertions failed for $label, see $WORK/$label.log)"
   local report; report=$(ls -1t loadtest/gatling/build/reports/gatling | head -1)
@@ -43,19 +50,24 @@ run_one() { # run_one <strategy> <label>
   sleep 3
 }
 
+restart_auth() { # restart_auth: recreate both auth instances (env VIRTUAL_THREADS honoured) and wait until healthy
+  docker compose -f local/docker-compose.yml up -d --scale auth-service=2 --force-recreate auth-service >/dev/null 2>&1
+  sleep 5
+  for i in $(seq 1 60); do curl -fs "$BASE_URL/actuator/health" >/dev/null 2>&1 && break; sleep 2; done
+  docker compose -f local/docker-compose.yml exec -T nginx nginx -s reload >/dev/null 2>&1
+  sleep 8
+}
+
 for s in $STRATEGIES; do run_one "$s" "$s"; done
+for s in $STRATEGIES; do run_one "$s" "steady-$s" steady; done
 
 if [ "$VT_COMPARE" = "1" ]; then
   echo "== virtual threads OFF vs ON for db-pessimistic"
   export VIRTUAL_THREADS=false
-  docker compose -f local/docker-compose.yml up -d --scale auth-service=2 --force-recreate auth-service >/dev/null 2>&1
-  for i in $(seq 1 60); do curl -fs "$BASE_URL/actuator/health" >/dev/null 2>&1 && break; sleep 2; done
-  docker compose -f local/docker-compose.yml exec -T nginx nginx -s reload >/dev/null 2>&1; sleep 5
+  restart_auth
   run_one db-pessimistic db-pessimistic-platform-threads
   unset VIRTUAL_THREADS
-  docker compose -f local/docker-compose.yml up -d --scale auth-service=2 --force-recreate auth-service >/dev/null 2>&1
-  for i in $(seq 1 60); do curl -fs "$BASE_URL/actuator/health" >/dev/null 2>&1 && break; sleep 2; done
-  docker compose -f local/docker-compose.yml exec -T nginx nginx -s reload >/dev/null 2>&1; sleep 5
+  restart_auth
 fi
 
 node scripts/bench-report.mjs "$WORK" "$OUT" "$USERS" "$AMOUNT" "$LIMIT"

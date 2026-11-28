@@ -33,6 +33,10 @@ public class AuthBurstSimulation extends Simulation {
     final long amount = Long.parseLong(env("AMOUNT", "1000"));
     final long limit = Long.parseLong(env("LIMIT", "100000"));
     // Docker Desktop on Windows refuses part of a 1,000-connection SYN burst, so by default users are injected over RAMP_SECONDS.
+    // MODE=burst (default): USERS requests at once. MODE=steady: RATE new requests/s for DURATION seconds.
+    final String mode = env("MODE", "burst");
+    final int rate = Integer.parseInt(env("RATE", "100"));
+    final int duration = Integer.parseInt(env("DURATION", "20"));
     final int rampSeconds = Integer.parseInt(env("RAMP_SECONDS", "3"));
     final long p99Max = Long.parseLong(env("P99_MAX_MS", "60000"));
     final String resultFile = env("RESULT_FILE", "build/bench-result.json");
@@ -73,11 +77,18 @@ public class AuthBurstSimulation extends Simulation {
                     })));
 
     {
-        setUp(scn.injectOpen(rampSeconds <= 0 ? atOnceUsers(users) : rampUsers(users).during(java.time.Duration.ofSeconds(rampSeconds)))).protocols(protocol)
+        setUp(scn.injectOpen(injection())).protocols(protocol)
                 .assertions(
                         global().failedRequests().count().is(0L),
                         global().responseTime().percentile(99).lt((int) p99Max));
     }
+
+    io.gatling.javaapi.core.OpenInjectionStep injection() {
+        if ("steady".equals(mode)) return constantUsersPerSec(rate).during(java.time.Duration.ofSeconds(duration));
+        return rampSeconds <= 0 ? atOnceUsers(users) : rampUsers(users).during(java.time.Duration.ofSeconds(rampSeconds));
+    }
+
+    long completedUsers() { return "steady".equals(mode) ? (long) rate * duration : users; }
 
     @Override
     public void after() {
@@ -88,8 +99,8 @@ public class AuthBurstSimulation extends Simulation {
                 Collections.sort(sorted);
                 double secs = Math.max(0.001, (lastEnd.get() - firstStart.get()) / 1000.0);
                 String json = String.format(java.util.Locale.ROOT,
-                        "{\"strategy\":\"%s\",\"users\":%d,\"amount\":%d,\"limit\":%d,\"approved_count\":%d,\"declined_count\":%d,\"overspend_amount\":%d,\"instances_seen\":%d,\"p50_ms\":%d,\"p95_ms\":%d,\"p99_ms\":%d,\"throughput_rps\":%.1f,\"completed\":%d}",
-                        strategy, users, amount, limit, a, declined.sum(), over, instances.size(),
+                        "{\"strategy\":\"%s\",\"mode\":\"%s\",\"users\":%d,\"amount\":%d,\"limit\":%d,\"approved_count\":%d,\"declined_count\":%d,\"overspend_amount\":%d,\"instances_seen\":%d,\"p50_ms\":%d,\"p95_ms\":%d,\"p99_ms\":%d,\"throughput_rps\":%.1f,\"completed\":%d}",
+                        strategy, mode, completedUsers(), amount, limit, a, declined.sum(), over, instances.size(),
                         pct(sorted, 50), pct(sorted, 95), pct(sorted, 99), sorted.size() / secs, sorted.size());
                 Path p = Path.of(resultFile);
                 if (p.getParent() != null) Files.createDirectories(p.getParent());

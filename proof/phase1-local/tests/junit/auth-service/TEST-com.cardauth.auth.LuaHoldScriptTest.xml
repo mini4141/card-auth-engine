@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.cardauth.auth.LuaHoldScriptTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-28T10:33:34.780Z" hostname="DESKTOP-LSTSC86" time="1.28">
+  <properties/>
+  <testcase name="holdCaptureAndRelease()" classname="com.cardauth.auth.LuaHoldScriptTest" time="1.28"/>
+  <system-out><![CDATA[17:33:26.643 [Test worker] INFO org.testcontainers.images.PullPolicy -- Image pull policy will be performed by: DefaultPullPolicy()
+17:33:26.665 [Test worker] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+17:33:26.690 [Test worker] INFO org.testcontainers.DockerClientFactory -- Testcontainers version: 1.21.3
+17:33:27.373 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+17:33:28.513 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+17:33:28.516 [Test worker] INFO org.testcontainers.DockerClientFactory -- Docker host IP address is localhost
+17:33:28.558 [Test worker] INFO org.testcontainers.DockerClientFactory -- Connected to docker: 
+  Server Version: 29.7.2
+  API Version: 1.55
+  Operating System: Docker Desktop
+  Total Memory: 15993 MB
+  Labels: 
+    com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+17:33:29.108 [Test worker] INFO tc.testcontainers/ryuk:0.12.0 -- Creating container for image: testcontainers/ryuk:0.12.0
+17:33:29.428 [Test worker] INFO org.testcontainers.utility.RegistryAuthLocator -- Credential helper/store (docker-credential-desktop) does not have credentials for https://index.docker.io/v1/
+17:33:30.068 [Test worker] INFO tc.testcontainers/ryuk:0.12.0 -- Container testcontainers/ryuk:0.12.0 is starting: 9ef2fd3f39865917438e0e555ea7d6cd7e8c35b7daf99b863f728bc46547032d
+17:33:31.400 [Test worker] INFO tc.testcontainers/ryuk:0.12.0 -- Container testcontainers/ryuk:0.12.0 started in PT2.291108S
+17:33:31.419 [Test worker] INFO org.testcontainers.utility.RyukResourceReaper -- Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+17:33:31.419 [Test worker] INFO org.testcontainers.DockerClientFactory -- Checking the system...
+17:33:31.421 [Test worker] INFO org.testcontainers.DockerClientFactory -- ✔︎ Docker server version should be at least 1.6.0
+17:33:31.423 [Test worker] INFO tc.redis:7.4.2 -- Creating container for image: redis:7.4.2
+17:33:31.651 [Test worker] INFO tc.redis:7.4.2 -- Container redis:7.4.2 is starting: 28143e59a278435f454b214100e24000b47ac6951d10724b2100d8f33c4c829a
+17:33:32.743 [Test worker] INFO tc.redis:7.4.2 -- Container redis:7.4.2 started in PT1.319026S
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

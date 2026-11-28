@@ -1,0 +1,307 @@
+> Task :integration-tests:clean
+> Task :libs:clean UP-TO-DATE
+> Task :loadtest:clean UP-TO-DATE
+> Task :services:clean UP-TO-DATE
+> Task :libs:domain:clean
+> Task :loadtest:gatling:clean
+> Task :services:auth-service:clean
+> Task :services:notification-service:clean
+> Task :services:settlement-service:clean
+> Task :integration-tests:compileJava NO-SOURCE
+> Task :integration-tests:processResources NO-SOURCE
+> Task :integration-tests:classes UP-TO-DATE
+> Task :libs:domain:compileJava
+> Task :services:auth-service:compileJava
+> Task :services:notification-service:compileJava
+> Task :services:settlement-service:compileJava
+> Task :integration-tests:compileTestJava
+> Task :integration-tests:processTestResources NO-SOURCE
+> Task :integration-tests:testClasses
+> Task :libs:domain:processResources
+> Task :libs:domain:classes
+> Task :libs:domain:jar
+> Task :services:auth-service:processResources
+> Task :services:auth-service:classes
+> Task :services:auth-service:jar
+> Task :services:notification-service:processResources
+> Task :services:notification-service:classes
+> Task :services:notification-service:jar
+> Task :services:settlement-service:processResources
+> Task :services:settlement-service:classes
+> Task :services:settlement-service:jar
+> Task :integration-tests:test
+
+AuthorizeToLedgerIT > approvalFlowsThroughKafkaIntoLedgerAndAuditLog() PASSED
+
+ConcurrencyCorrectnessIT > safeStrategiesNeverExceedTheLimitAndLedgerMatchesHolds(String) > [1] db-pessimistic PASSED
+
+ConcurrencyCorrectnessIT > safeStrategiesNeverExceedTheLimitAndLedgerMatchesHolds(String) > [2] db-optimistic PASSED
+
+ConcurrencyCorrectnessIT > safeStrategiesNeverExceedTheLimitAndLedgerMatchesHolds(String) > [3] redis-lock PASSED
+
+ConcurrencyCorrectnessIT > safeStrategiesNeverExceedTheLimitAndLedgerMatchesHolds(String) > [4] redis-lua PASSED
+
+ConcurrencyCorrectnessIT > naiveStrategyOverspends() PASSED
+
+2026-11-28T17:33:18.312+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=d46ce246-f369-4f85-aa74-a74680382792 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.320+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=9057c2e4-72a7-4a8b-ac95-c26faec5bec4 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.330+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=eacc3f38-065d-41d1-9a2a-1bcc5e0ba3e4 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.339+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=f0937877-1182-4866-8ef4-eacacff0a7f6 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.348+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=1aaeaba9-be1b-44ca-8d71-04cfbf2e55b7 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.354+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=a5c50806-0db7-468b-afad-8fed4533e91d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.362+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=e449a750-4630-4e84-b84b-1c0f546558c1 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.369+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=e3c51dd6-379d-4e40-80b5-3cdfa15653fd card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.378+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=2dbd9801-54df-4657-b23e-52838b84d11d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.384+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=0092c559-bae8-42a8-8ece-0e2eca861acb card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.390+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=332b4d3f-1093-4198-aa0f-e2dad43a626d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.396+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=bb6ddde1-046d-44cb-b5aa-a2cc80112a2d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.401+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=edc7b9a9-4941-4c86-a6e9-0cfdcaa1337d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.408+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=bb296319-29f9-40b8-aefe-2c3accd0b491 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.413+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=95e039e5-675b-4fde-950d-30423bea0d41 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.420+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=a2f4a326-5508-4d99-a4d4-b80367c8ae14 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.426+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=bb162e07-85b1-48bb-896d-1c9cf6e3f78a card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.432+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6ebcd99a-7267-4bbe-afd7-d7e4d9654ebf card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.438+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=48189470-b511-4ad0-9928-8780262d35e4 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.444+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=be87619d-2a0c-4ed5-b18e-4336650102cd card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.451+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ce614fcf-2d4f-4393-bbb6-09230ac3bfa3 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.459+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=214b6052-df70-44de-8731-ce967872a913 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.466+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=663fc246-2384-4f65-8a43-ff28276c743d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.472+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=74cfd0ff-8b74-4506-b252-a337da19e6db card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.479+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=fbc0387c-7398-4da9-93ed-662224c41790 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.486+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=7e5f8c80-dbcc-4ea7-9cd1-4de28584c965 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.494+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=8c8390ec-ec4b-41ae-adf8-2986e5921ad2 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.503+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=9f1ec0e1-8c0e-475d-bd62-65db9646de60 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.520+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=63a3129a-6dbf-4a31-a222-ab37109570b8 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.554+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=85cccbc0-c572-4b53-80a8-ac3f10eb814b card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.567+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=58ba9a62-d843-42ca-8903-b16ddc87baa7 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.609+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=7cea982e-6a2d-4715-bc38-5a60c0f38902 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.623+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=9f1c0cea-37b9-4e9c-a89f-3d4ba930212d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.631+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=715ce304-4c11-4510-9e97-adcdd89cc697 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.641+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6d1480b6-76ac-416c-a29a-6ef98ea0452d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.649+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=9d8d4529-e93f-414a-8b2a-313574904380 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.655+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=5392a276-71d3-48a1-8d0f-0e334e58e5b4 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.661+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=096bb989-1a8d-489d-9d12-16a10d7a40a6 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.667+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=4acd41c2-f440-4c93-9142-b7bc6af1c5c0 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.672+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=645e699a-02fb-42d3-859f-104f089738ea card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.677+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=01f5d2b4-a44e-42b4-bd80-8bb8da72f794 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.683+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=0540940c-01a4-473a-90c4-7088cd9b0f47 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.690+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=5b313752-89bb-439f-8286-03a6486443e7 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.697+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=86c4420b-91f0-402a-9332-2e58c79fa5a8 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.703+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=2b55f272-8776-4a3a-add5-3acc4a5d8509 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.714+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=2e9bc3d4-b658-4231-a91d-f2dbeb32babd card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.723+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ad7081b4-c653-4c35-b432-8f3273558a4f card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.732+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=8bfc1c64-dcd0-4888-9929-6a38df144db3 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.744+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ddd357ae-8bd5-4e89-a442-917d2f8d758c card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.758+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=beb6521a-c296-47ec-8793-ebe18943991d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.793+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=c38b7672-526a-4bc2-a6f8-d619aa9feecd card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.802+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=2c3459d3-5c80-4068-b16d-60f0fe53d84b card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.808+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=92402426-e98c-46b7-8fda-c3de2ab8fb68 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.814+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6e0f309c-bd5f-4308-adc1-ec7ca1af1b0e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.826+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6dfe9bfe-8468-4bd9-b71f-da7dfa59d883 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.838+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=1b72fc0f-805e-4781-86be-93e54a77af1b card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.847+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=db09f410-885c-494f-9bf3-e70f53a2cf3e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.857+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ceeb29c2-5249-456e-8378-aa3ddf939a48 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.865+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=5d2e2f26-08be-4f7a-81f8-efe74b674846 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.876+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=900376ad-ac55-4e84-bee2-a259a5703fbc card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.902+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=e7cc1957-4c30-4b96-96fd-5b0b9d83995d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.926+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=b9e92ec7-ffe8-4ebb-83a9-c574ad6e813c card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.942+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=589c742c-67fd-406f-8556-373b9bf88802 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.950+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=5289a068-e1a5-4345-8424-0ad819f7656d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.957+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=5d299e0e-9b17-4aa9-a632-63cc29b731e1 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.963+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=0afe01d5-4827-456a-97e1-310c263573c9 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.968+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=e71fce56-2819-4acb-a83d-422289ad304e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.973+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6ec7af75-2a6c-4ff2-bad1-6d5e90ce3832 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.979+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=4b6b8af7-720e-4546-bb42-5a954fd9a8c9 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.984+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=9424786c-f5ef-4f1f-82af-15440e4dba00 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.989+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=fbc45102-a3c8-47f2-888a-07e221f2c024 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.994+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=aeb63bdf-117e-406d-9c40-689937fb9985 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:18.998+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6d1c2264-bf3c-42bb-99f0-d633d3952e3c card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.003+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=a2d3785f-4ead-451a-973c-4814a95d9998 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.008+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=925fefbb-10d8-45f4-8b8e-d66afc83049a card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.013+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=fe10e8de-42fa-4014-86f0-2550321e004a card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.017+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=591e39e0-c6ae-4512-a1d5-7d7220799455 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.022+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=fb6338f6-51e3-4153-8255-2e989edaa45c card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.026+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=d107138c-42a9-485b-b53a-cadb098c43ce card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.031+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=25ae76ef-b1f9-4b41-a0b4-f2bc1d549517 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.036+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=d6cf1c5d-2bee-42e2-b4b6-4d990952e7cf card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.043+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=366f34e4-a44f-4af2-bc81-31da46c49dd7 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.050+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=7368dd1d-dfae-4b9d-a8ee-14274f7cc543 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.056+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=80243198-261b-4894-87c9-ecffd8087f99 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.071+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=418cce1a-f0a3-42ad-8510-6e6c2f454e9e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.077+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ba21c979-8c90-4615-99fd-71488cb334a5 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.083+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=45ff1d81-6feb-4ecb-a5f8-cec3de03b7b1 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.088+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=2905ca1c-2389-4d10-a27f-761a22469aaa card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.094+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=e4a14bc2-96ae-4591-b110-580f40e487cc card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.100+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=8d7129b3-2dfe-4aea-8845-02780dd8f6ce card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.105+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=01784248-5907-4b22-9aa0-a5411f478e99 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.111+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=0883a424-9854-4159-8281-8b7d9080e35e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.115+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=a81d250f-b11c-4b6d-9cf5-456790bdc735 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.120+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ebc7eb03-61b3-455a-808f-380eb5052a62 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.126+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=e84a7872-f238-4535-9396-0a8577e187b5 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.139+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=704d1415-9c0d-4f2b-b72e-879570ae5242 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.150+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ea08a3cf-589a-475f-b588-6199614dd961 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.156+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=4259efb4-2cb5-4237-b48b-b83363118847 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.162+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=d6cc1efd-b1e0-4d4c-9365-0b36d98cd6e3 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.168+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=0f0950ff-8b16-45f9-aa53-e177262cf24c card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.174+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ee8ee0c8-9fef-41e7-85b3-8a592435f2fb card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.179+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=5866b61a-49ec-4899-a580-706f4a21a463 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.186+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=d28023ce-c88a-4a03-804d-09263cb1cef0 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.191+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=7d828a9a-48f5-4e99-a7ab-e187bff0d1c8 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.198+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=c919a3b5-cea4-434c-98c9-bacb34874014 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.204+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=a448f2df-c54d-4e49-b9b9-a5d37195d0a3 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.210+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=27cfd0b4-ca77-4805-a1f1-226aa82b82c3 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.216+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6e9e4c7e-cf34-435a-99d9-57e1a618e89d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.222+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=21f25651-869f-4b0b-b2e0-646c7558f3f9 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.229+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=256e7ac2-f9c4-4ce7-b860-6729238e0443 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.237+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=9160a92c-2e3b-4ef6-b1c5-1024b56474ab card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.243+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ae317381-0aee-4729-ab2f-aed1f22c4a02 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.253+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=523533dd-8fba-4344-9252-ec2406255bec card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.267+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=d9e53716-4be4-4ca8-b1a9-be7518c6e0a9 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.274+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=df6afb9b-9e47-4349-bd19-71776f107179 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.282+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=dbb06c43-5f1e-4dbd-a369-300bb83b346e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.304+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=0d810630-6dbc-4fd0-a196-a1e1052e7a1b card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.314+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6953ea27-036f-4687-8d1e-5cc626e59ddf card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.327+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=aaeb0cf1-fe8c-484c-a6e8-33db59e6994d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.333+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=d511542d-e194-4beb-be0d-0dd535f495cc card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.339+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=93b9a132-40d4-4435-b649-f68ad82b75b7 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.348+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=9ab6f128-c03f-44ef-8784-f745cfe86844 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.354+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=44cfe1c0-69b2-4be4-8988-713560dcaf6c card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.360+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=b8ad3c5a-f129-4728-8222-1e71f9152df6 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.366+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=c923da2a-fef0-482d-93af-2fc02fd18e6d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.371+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=a05d0028-8e8c-4d0e-9633-5521ab86ebc9 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.376+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=654060a8-075c-4112-b1cb-97a36da5d44e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.381+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=fc360abf-8979-4f63-87f6-0c20cc72e301 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.387+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=22da1008-52f1-4f5d-9840-9b6ee296bc7a card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.392+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=2d31e3bf-5101-4d88-9458-9ef0160c59c9 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.397+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=acb9387b-bb9c-4652-a005-0ef118f5623a card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.401+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=32ce3718-e310-448c-a0e9-e90a9541e7a1 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.406+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6cbf9452-9ab9-485c-b08c-9bcd7a505646 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.411+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=af95e4d5-7c0f-49b2-a36b-3f4a862cf50c card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.416+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=4584e219-f0be-4576-8a43-eee6617e907f card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.421+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=8a79675b-c0a4-4fb9-95e0-422b189b1a6b card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.426+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=4ad0a97c-8c20-4f1c-b3d7-affae2fe0b5c card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.432+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=a272b9bb-85b7-4e00-b8d8-d816b30effb9 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.437+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=842b7a14-9e63-4ef7-9827-d70e20193cfd card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.443+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=98b3e766-cf28-4468-926c-ba7e2c4999b9 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.448+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=fd9e9c59-6f4f-48b0-b173-d270d19485a7 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.453+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=fbb4d410-0324-40fb-a367-3a08966e3f1e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.459+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=921bfdef-d7b4-4663-8381-ed368cf237d3 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.465+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6c95144d-f0d6-4367-a76f-fff2e3062590 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.470+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=7363b0a9-0973-490b-b2c2-f73a3a85fe7d card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.476+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=baaae6d6-dac3-458a-b208-f94260e80bc0 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.482+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=7040e865-f556-468a-b1e8-dd57a4143a46 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.487+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=9bfcf5be-a5c6-4992-9a00-a825a5e05d53 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.492+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=b8e4fb6f-4af2-400a-8220-e5b6213af0de card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.499+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=108c16c7-ec51-4a4b-b8cb-cfa9560469bc card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.504+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=70c561f4-47a5-47a7-a68b-5bde214b09b4 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.510+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=b1615c23-682b-43c7-9718-c5c9ff855b39 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.515+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=2352c834-a281-4bbc-a840-1a5db3e7fb91 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.520+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=39d5f13a-3c89-4e29-a497-fd1b63b14244 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.525+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=25373d0b-c19f-4762-b0b8-6df55656b216 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.531+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=e65b31bd-d407-4eb4-9f70-bb7597a8f249 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.535+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=0f8d9468-8e3c-4b4c-9317-7a2666b8079b card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.542+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=9aadf1e3-4ade-487a-ba5b-60d9291a2b79 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.547+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=175ea45b-5d61-4d62-b31d-ba6ec214facc card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.553+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=3ba6aedb-7c64-41d8-9a9e-cac44fad2490 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.559+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=c747d802-65f3-42db-9f98-4999ceeb81f5 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.564+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ff699aa8-ec6e-4f7a-9eb7-bbd65050b403 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.569+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=d1355044-2acf-4756-a26e-48bf93b9d08e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.574+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=5069659b-422a-48a1-9d2a-31d60e151310 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.580+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=90f46ed6-883f-4e86-887f-1e98f40b8d64 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.585+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=fab0a098-1182-4160-adf1-2e526c0499a0 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.591+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=157b4daf-79d0-4a23-b80f-219a327f0ef3 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.596+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ae31eaf0-5ae7-4378-b74e-9bf5a56419cd card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.601+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=68781601-0fba-4f98-80d2-c137688a3b93 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.607+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6365d15e-9c9a-47cd-8a91-cdf0364b8672 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.612+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=433a3da7-d2a0-4a3d-9f92-fccfcec4187c card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.617+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=004ac46a-d194-4c02-9182-9641fed9ebb5 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.623+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=006428ba-875e-485a-8000-2d097ba57866 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.627+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6b8959c6-1a2f-4e97-98fd-40446719fd06 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.633+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=14f07d81-cb7f-4241-a5ad-e57bdd1cbeeb card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.639+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=0ee36c3e-3aed-4b6c-8817-a91d748d3fbd card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.644+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=61d3e700-aeb3-42a7-9363-b3896b793034 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.649+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=a77d9e3a-dd64-422b-9bb1-570b02757b30 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.654+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=dd559f53-9490-4952-bad4-8e45c54b387e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.660+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=543c408b-2e13-4ad2-8ae1-e2cf3b717407 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.664+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=6c8e8a0c-b992-42c5-889f-334aea047891 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.669+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=7e967d18-66af-4404-b1fe-9b8452d9306e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.674+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=2823f7ea-52fd-4e61-9422-d2cbe9a1e9ec card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.679+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=094ade84-d36c-4cf6-8c65-3a7abe9a0fd5 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.684+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=164e3b0d-1653-4031-a43f-6d549aa8c1cb card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.690+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=1bc8deb9-ef1a-4717-b9b0-b818aa1434f9 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.694+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=2f11ac23-1459-4f07-86c5-d0f4036b6c48 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.699+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ee61c797-b445-4a45-afa6-3623bd458a24 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.705+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=c8a06656-f4ab-4021-892c-6e3cab72656f card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.712+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=be02efa1-2415-4656-96de-72ba1020a4e5 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.716+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=bf1f2466-700c-491d-8181-b64b245aaef1 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.722+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=1978b139-5d10-4574-ae77-84698292fbdc card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.728+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=72c3a41b-0c2e-4d2e-a1ff-a7967d29d30b card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.733+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=541d5e93-3985-4163-a5ac-f546cfcd62da card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.740+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=fdd6243c-d359-4750-8256-630dc8a38d3b card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.746+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=31f1cb93-d0eb-4684-aee6-9a6fae2f7ee8 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.751+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=e3786157-31c1-4896-bd9f-da3228b5704a card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.757+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=ec494cb6-e15f-4da1-9c25-325d9a9e47d5 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.762+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=684c9630-d845-46c7-9dd0-231ca6f2f95e card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.767+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=7b828805-6515-42ff-9168-36ad2243db46 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.772+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=8d49536f-6827-48bb-928e-bd9058cc4537 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.777+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=1e351fe2-fa2a-46b0-b32d-d2cbde1f2348 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.782+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=3b49fb55-ec51-449e-a373-2b1fe201546a card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.787+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=b4059b79-e548-410d-8789-d213850cc7ea card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+2026-11-28T17:33:19.793+07:00  INFO 12008 --- [auth-service] [        kafka-1] com.cardauth.settlement.LedgerService    : posted ledger auth=c6b815bf-14cb-4ac9-a370-754f7a1941b4 card=b4817b13-c3e1-4416-9727-a38b4c6683cd amount=1000
+
+> Task :libs:compileJava NO-SOURCE
+> Task :libs:processResources NO-SOURCE
+> Task :libs:classes UP-TO-DATE
+> Task :libs:compileTestJava NO-SOURCE
+> Task :libs:processTestResources NO-SOURCE
+> Task :libs:testClasses UP-TO-DATE
+> Task :libs:test NO-SOURCE
+> Task :loadtest:compileJava NO-SOURCE
+> Task :loadtest:processResources NO-SOURCE
+> Task :loadtest:classes UP-TO-DATE
+> Task :loadtest:compileTestJava NO-SOURCE
+> Task :loadtest:processTestResources NO-SOURCE
+> Task :loadtest:testClasses UP-TO-DATE
+> Task :loadtest:test NO-SOURCE
+> Task :services:compileJava NO-SOURCE
+> Task :services:processResources NO-SOURCE
+> Task :services:classes UP-TO-DATE
+> Task :services:compileTestJava NO-SOURCE
+> Task :services:processTestResources NO-SOURCE
+> Task :services:testClasses UP-TO-DATE
+> Task :services:test NO-SOURCE
+> Task :libs:domain:compileTestJava NO-SOURCE
+> Task :libs:domain:processTestResources NO-SOURCE
+> Task :libs:domain:testClasses UP-TO-DATE
+> Task :libs:domain:test NO-SOURCE
+> Task :loadtest:gatling:compileJava NO-SOURCE
+> Task :loadtest:gatling:processResources NO-SOURCE
+> Task :loadtest:gatling:classes UP-TO-DATE
+> Task :loadtest:gatling:compileTestJava NO-SOURCE
+> Task :loadtest:gatling:processTestResources NO-SOURCE
+> Task :loadtest:gatling:testClasses UP-TO-DATE
+> Task :loadtest:gatling:test NO-SOURCE
+> Task :services:auth-service:compileTestJava
+> Task :services:auth-service:processTestResources NO-SOURCE
+> Task :services:auth-service:testClasses
+
+> Task :services:auth-service:test
+
+LuaHoldScriptTest > holdCaptureAndRelease() PASSED
+
+StrategyRegistryTest > headerSelectsStrategyAndConfigIsTheDefault() PASSED
+
+> Task :services:notification-service:compileTestJava NO-SOURCE
+> Task :services:notification-service:processTestResources NO-SOURCE
+> Task :services:notification-service:testClasses UP-TO-DATE
+> Task :services:notification-service:test NO-SOURCE
+> Task :services:settlement-service:compileTestJava
+> Task :services:settlement-service:processTestResources NO-SOURCE
+> Task :services:settlement-service:testClasses
+
+> Task :services:settlement-service:test
+
+LedgerServiceTest > postsOnceAndCapturesTheHold() PASSED
+
+BUILD SUCCESSFUL in 3m 5s
+27 actionable tasks: 24 executed, 3 up-to-date

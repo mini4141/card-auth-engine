@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.cardauth.it.AuthorizeToLedgerIT" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-28T10:32:08.456Z" hostname="DESKTOP-LSTSC86" time="3.223">
+  <properties/>
+  <testcase name="approvalFlowsThroughKafkaIntoLedgerAndAuditLog()" classname="com.cardauth.it.AuthorizeToLedgerIT" time="3.223"/>
+  <system-out><![CDATA[17:31:14.389 [Test worker] INFO org.testcontainers.images.PullPolicy -- Image pull policy will be performed by: DefaultPullPolicy()
+17:31:14.405 [Test worker] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+17:31:14.797 [Test worker] INFO org.testcontainers.DockerClientFactory -- Testcontainers version: 1.21.4
+17:31:15.320 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+17:31:15.957 [Test worker] INFO org.testcontainers.dockerclient.DockerClientProviderStrategy -- Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+17:31:15.959 [Test worker] INFO org.testcontainers.DockerClientFactory -- Docker host IP address is localhost
+17:31:15.989 [Test worker] INFO org.testcontainers.DockerClientFactory -- Connected to docker: 
+  Server Version: 29.7.2
+  API Version: 1.55
+  Operating System: Docker Desktop
+  Total Memory: 15993 MB
+  Labels: 
+    com.docker.desktop.address=npipe://\\.\pipe\docker_cli
+17:31:16.505 [Test worker] INFO tc.testcontainers/ryuk:0.12.0 -- Creating container for image: testcontainers/ryuk:0.12.0
+17:31:16.906 [Test worker] INFO org.testcontainers.utility.RegistryAuthLocator -- Credential helper/store (docker-credential-desktop) does not have credentials for https://index.docker.io/v1/
+17:31:17.269 [Test worker] INFO tc.testcontainers/ryuk:0.12.0 -- Container testcontainers/ryuk:0.12.0 is starting: 91a4f36bfb2b0a769dbac72a1f0b9ed56c8c3a85275c42e73d8dd5bd64fb3edd
+17:31:18.196 [Test worker] INFO tc.testcontainers/ryuk:0.12.0 -- Container testcontainers/ryuk:0.12.0 started in PT1.6902447S
+17:31:18.206 [Test worker] INFO org.testcontainers.utility.RyukResourceReaper -- Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+17:31:18.206 [Test worker] INFO org.testcontainers.DockerClientFactory -- Checking the system...
+17:31:18.208 [Test worker] INFO org.testcontainers.DockerClientFactory -- ✔︎ Docker server version should be at least 1.6.0
+17:31:18.209 [Test worker] INFO tc.postgres:17.6 -- Creating container for image: postgres:17.6
+17:31:18.373 [Test worker] INFO tc.postgres:17.6 -- Container postgres:17.6 is starting: a1177c4e5103389c2a9bbf0af7993d11bcad58c8abdb037ae5cc880e2f53ecc7
+17:31:20.854 [Test worker] INFO tc.postgres:17.6 -- Container postgres:17.6 started in PT2.645307S
+17:31:20.856 [Test worker] INFO tc.postgres:17.6 -- Container is started (JDBC URL: jdbc:postgresql://localhost:57873/test?loggerLevel=OFF)
+17:31:20.859 [Test worker] INFO tc.redis:7.4.2 -- Creating container for image: redis:7.4.2
+17:31:21.000 [Test worker] INFO tc.redis:7.4.2 -- Container redis:7.4.2 is starting: 99ae37fc01cef713ea5f0fb01f21567eaf8937e3ed1b8bf96053a875964f568e
+17:31:21.685 [Test worker] INFO tc.redis:7.4.2 -- Container redis:7.4.2 started in PT0.8262634S
+17:31:21.686 [Test worker] INFO tc.apache/kafka:3.9.1 -- Creating container for image: apache/kafka:3.9.1
+17:31:21.869 [Test worker] INFO tc.apache/kafka:3.9.1 -- Container apache/kafka:3.9.1 is starting: 92893bfd9799170ec499b46bbc6392e058fa35a94d07c1d6f21e374d8c4f3e64
+17:31:28.856 [Test worker] INFO tc.apache/kafka:3.9.1 -- Container apache/kafka:3.9.1 started in PT7.1703186S
+17:31:28.857 [Test worker] INFO tc.amazon/dynamodb-local:2.6.1 -- Creating container for image: amazon/dynamodb-local:2.6.1
+17:31:28.995 [Test worker] INFO tc.amazon/dynamodb-local:2.6.1 -- Container amazon/dynamodb-local:2.6.1 is starting: 452932e2b67aaef4d06ada97f2bd49c9fcc3289007a7dbb140e56f6ad12f32b4
+17:31:34.990 [Test worker] INFO tc.amazon/dynamodb-local:2.6.1 -- Container amazon/dynamodb-local:2.6.1 started in PT6.1325458S
+2026-11-28T17:32:01.650+07:00  INFO 12008 --- [auth-service] [    Test worker] c.cardauth.auth.store.AuthLogRepository  : created DynamoDB table auth_log
+2026-11-28T17:32:06.878+07:00  WARN 12008 --- [auth-service] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-11-28T17:32:10.699+07:00  INFO 12008 --- [auth-service] [omcat-handler-2] c.c.auth.authz.AuthorizationService      : authorisation c8323097-ff4f-41ce-b424-01f2a941abde card=d143e300-52c5-429f-8ce0-20609027f77f amount=4000 decision=APPROVED strategy=redis-lua
+2026-11-28T17:32:10.830+07:00  INFO 12008 --- [auth-service] [omcat-handler-1] c.c.auth.authz.AuthorizationService      : authorisation 656d6d5f-6790-48ae-b704-71ef98f4ff75 card=d143e300-52c5-429f-8ce0-20609027f77f amount=9000 decision=DECLINED strategy=redis-lua
+2026-11-28T17:32:11.178+07:00  INFO 12008 --- [auth-service] [        kafka-2] com.cardauth.settlement.LedgerService    : posted ledger auth=c8323097-ff4f-41ce-b424-01f2a941abde card=d143e300-52c5-429f-8ce0-20609027f77f amount=4000
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

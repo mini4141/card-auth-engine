@@ -25,3 +25,22 @@ jobs:
         with:
           name: test-reports
           path: '**/build/test-results/test/*.xml'
+
+  gatling:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+      - name: Gatling burst against the compose stack (2 auth instances behind nginx)
+        run: ONLY_GATLING=1 scripts/test-all.sh
+      - name: Upload Gatling report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gatling-report
+          path: proof/phase1-local/tests/gatling
