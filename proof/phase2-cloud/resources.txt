@@ -1,0 +1,131 @@
+# Deployed resources (2026-11-28T11:13:30Z), region ap-southeast-2
+
+## ECS services
+------------------------------------------------------------------------
+|                           DescribeServices                           |
++---------+-------------+----------+------------------------+----------+
+| desired | launchType  | running  |        service         | status   |
++---------+-------------+----------+------------------------+----------+
+|  2      |  FARGATE    |  2       |  auth-service          |  ACTIVE  |
+|  1      |  FARGATE    |  1       |  settlement-service    |  ACTIVE  |
+|  1      |  FARGATE    |  1       |  notification-service  |  ACTIVE  |
++---------+-------------+----------+------------------------+----------+
+
+## Load balancer
+-------------------------------------------------------------------------
+|                         DescribeLoadBalancers                         |
++--------+--------------------------------------------------------------+
+|  dns   |  card-auth-alb-1022655889.ap-southeast-2.elb.amazonaws.com   |
+|  name  |  card-auth-alb                                               |
+|  scheme|  internet-facing                                             |
+|  state |  active                                                      |
+|  type  |  application                                                 |
++--------+--------------------------------------------------------------+
+
+## RDS
+-----------------------------------
+|       DescribeDBInstances       |
++----------+----------------------+
+|  class   |  db.t4g.micro        |
+|  engine  |  postgres            |
+|  id      |  card-auth-postgres  |
+|  multiAz |  False               |
+|  public  |  False               |
+|  status  |  available           |
+|  version |  17.7                |
++----------+----------------------+
+
+## ElastiCache
+--------------------------------------------------------------------------
+|                          DescribeCacheClusters                         |
++--------+-------------------+-------------------+------------+----------+
+| engine |        id         |       node        |  status    | version  |
++--------+-------------------+-------------------+------------+----------+
+|  redis |  card-auth-redis  |  cache.t4g.micro  |  available |  7.1.0   |
++--------+-------------------+-------------------+------------+----------+
+
+## DynamoDB
+{
+    "name": "auth_log",
+    "status": "ACTIVE",
+    "billing": "PAY_PER_REQUEST",
+    "items": 0,
+    "keys": [
+        {
+            "AttributeName": "pk",
+            "KeyType": "HASH"
+        },
+        {
+            "AttributeName": "sk",
+            "KeyType": "RANGE"
+        }
+    ]
+}
+
+## MSK Serverless
+---------------------------------------------
+|              ListClustersV2               |
++------------------+---------+--------------+
+|       name       |  state  |    type      |
++------------------+---------+--------------+
+|  card-auth-kafka |  ACTIVE |  SERVERLESS  |
++------------------+---------+--------------+
+
+## ECR
+------------------------------------
+|       DescribeRepositories       |
++----------------------------------+
+|  card-auth/auth-service          |
+|  card-auth/notification-service  |
+|  card-auth/settlement-service    |
++----------------------------------+
+
+## Log groups
+----------------------------------------------------------
+|                    DescribeLogGroups                   |
++--------------------------------------+-----------------+
+|                 name                 |  retentionDays  |
++--------------------------------------+-----------------+
+|  /ecs/card-auth/auth-service         |  1              |
+|  /ecs/card-auth/notification-service |  1              |
+|  /ecs/card-auth/settlement-service   |  1              |
++--------------------------------------+-----------------+
+
+## Tagged resources (Project=card-auth-engine)
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:security-group/sg-0a4e98ad5184c18d3
+arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:service/card-auth-cluster/notification-service
+arn:aws:rds:ap-southeast-2:<ACCOUNT_ID>:db:card-auth-postgres
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:route-table/rtb-07d1c39a6c5e70350
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:subnet/subnet-0b1d2b5f0eaccf0b6
+arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:service/card-auth-cluster/auth-service
+arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:task-definition/card-auth-auth-service:1
+arn:aws:elasticloadbalancing:ap-southeast-2:<ACCOUNT_ID>:loadbalancer/app/card-auth-alb/fd9755c56b89ae35
+arn:aws:logs:ap-southeast-2:<ACCOUNT_ID>:log-group:/ecs/card-auth/notification-service
+arn:aws:logs:ap-southeast-2:<ACCOUNT_ID>:log-group:/ecs/card-auth/auth-service
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:security-group/sg-06d511225dbfb93bb
+arn:aws:ecr:ap-southeast-2:<ACCOUNT_ID>:repository/card-auth/settlement-service
+arn:aws:ecr:ap-southeast-2:<ACCOUNT_ID>:repository/card-auth/notification-service
+arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:service/card-auth-cluster/settlement-service
+arn:aws:elasticloadbalancing:ap-southeast-2:<ACCOUNT_ID>:listener/app/card-auth-alb/fd9755c56b89ae35/5143d5fdc3d20d55
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:subnet/subnet-0e563982cb808662c
+arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:cluster/card-auth-cluster
+arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:task-definition/card-auth-notification-service:1
+arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:task-definition/card-auth-settlement-service:1
+arn:aws:elasticloadbalancing:ap-southeast-2:<ACCOUNT_ID>:targetgroup/card-auth-auth/3235d24421608813
+arn:aws:elasticloadbalancing:ap-southeast-2:<ACCOUNT_ID>:targetgroup/card-auth-notif/c1e1685edef678a1
+arn:aws:rds:ap-southeast-2:<ACCOUNT_ID>:pg:card-auth-pg17-<ACCOUNT_ID><ACCOUNT_ID>02
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:security-group/sg-07f33fb96cf1e3efe
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:security-group/sg-011fa7a97fed181d4
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:subnet/subnet-09ec3123f9c47cc78
+arn:aws:elasticache:ap-southeast-2:<ACCOUNT_ID>:cluster:card-auth-redis
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:internet-gateway/igw-04536e8c8c71db1be
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:security-group/sg-02e20057f011bc23b
+arn:aws:logs:ap-southeast-2:<ACCOUNT_ID>:log-group:/ecs/card-auth/settlement-service
+arn:aws:rds:ap-southeast-2:<ACCOUNT_ID>:subgrp:card-auth-db
+arn:aws:dynamodb:ap-southeast-2:<ACCOUNT_ID>:table/auth_log
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:subnet/subnet-02d8ba9ea506a56a0
+arn:aws:ecr:ap-southeast-2:<ACCOUNT_ID>:repository/card-auth/auth-service
+arn:aws:elasticache:ap-southeast-2:<ACCOUNT_ID>:subnetgroup:card-auth-redis
+arn:aws:elasticloadbalancing:ap-southeast-2:<ACCOUNT_ID>:listener-rule/app/card-auth-alb/fd9755c56b89ae35/5143d5fdc3d20d55/becfa2c4315408be
+arn:aws:kafka:ap-southeast-2:<ACCOUNT_ID>:cluster/card-auth-kafka/8d62cbf5-c0c9-4c6e-9c8f-8c7189a09bba-s3
+arn:aws:ec2:ap-southeast-2:<ACCOUNT_ID>:vpc/vpc-00cc2cb2e4a3df88d

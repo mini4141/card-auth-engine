@@ -1,0 +1,39 @@
+{
+    "ClusterInfo": {
+        "ClusterType": "SERVERLESS",
+        "ClusterArn": "arn:aws:kafka:ap-southeast-2:<ACCOUNT_ID>:cluster/card-auth-kafka/8d62cbf5-c0c9-4c6e-9c8f-8c7189a09bba-s3",
+        "ClusterName": "card-auth-kafka",
+        "CreationTime": "2026-11-28T10:43:27.158000+00:00",
+        "CurrentVersion": "K2EUQ1WTGCTBG2",
+        "State": "ACTIVE",
+        "Tags": {
+            "Project": "card-auth-engine",
+            "Owner": "alvieirvansyah",
+            "ManagedBy": "terraform",
+            "Ephemeral": "true"
+        },
+        "Serverless": {
+            "VpcConfigs": [
+                {
+                    "SubnetIds": [
+                        "subnet-0b1d2b5f0eaccf0b6",
+                        "subnet-09ec3123f9c47cc78"
+                    ],
+                    "SecurityGroupIds": [
+                        "sg-0a4e98ad5184c18d3"
+                    ]
+                }
+            ],
+            "ClientAuthentication": {
+                "Sasl": {
+                    "Iam": {
+                        "Enabled": true
+                    }
+                }
+            },
+            "ConnectivityInfo": {
+                "NetworkType": "IPV4"
+            }
+        }
+    }
+}

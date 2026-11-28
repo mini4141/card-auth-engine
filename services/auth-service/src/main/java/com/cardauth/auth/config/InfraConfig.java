@@ -1,7 +1,12 @@
 package com.cardauth.auth.config;
 
 import com.cardauth.domain.Topics;
+import io.micrometer.cloudwatch2.CloudWatchConfig;
+import io.micrometer.cloudwatch2.CloudWatchMeterRegistry;
+import io.micrometer.core.instrument.Clock;
+import io.micrometer.core.instrument.config.MeterFilter;
 import java.net.URI;
+import java.time.Duration;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -45,6 +50,21 @@ public class InfraConfig {
     @ConditionalOnProperty(name = "management.cloudwatch.metrics.export.enabled", havingValue = "true")
     CloudWatchAsyncClient cloudWatchAsyncClient(AppProperties props) {
         return CloudWatchAsyncClient.builder().region(Region.of(props.dynamo().region())).build();
+    }
+
+    /** Spring Boot 3 ships no CloudWatch export, so the Micrometer registry is wired by hand (auth.* meters only). */
+    @Bean(destroyMethod = "close")
+    @ConditionalOnProperty(name = "management.cloudwatch.metrics.export.enabled", havingValue = "true")
+    CloudWatchMeterRegistry cloudWatchMeterRegistry(CloudWatchAsyncClient client) {
+        CloudWatchConfig config = new CloudWatchConfig() {
+            @Override public String get(String key) { return null; }
+            @Override public String namespace() { return "card-auth-engine"; }
+            @Override public Duration step() { return Duration.ofSeconds(30); }
+        };
+        CloudWatchMeterRegistry registry = new CloudWatchMeterRegistry(config, Clock.SYSTEM, client);
+        registry.config().meterFilter(MeterFilter.denyUnless(id -> id.getName().startsWith("auth.")));
+        registry.config().commonTags("application", "auth-service");
+        return registry;
     }
 
     // Created at start-up through the Kafka AdminClient (works against MSK Serverless with IAM too).

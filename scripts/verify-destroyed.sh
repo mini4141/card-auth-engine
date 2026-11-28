@@ -6,6 +6,7 @@ cd "$(dirname "$0")/.."
 export AWS_PROFILE=card-auth-engine-deployer
 export AWS_REGION=ap-southeast-2 AWS_DEFAULT_REGION=ap-southeast-2
 export AWS_PAGER=""
+export MSYS_NO_PATHCONV=1
 redact() { sed -E 's/[0-9]{12}/<ACCOUNT_ID>/g'; }
 mkdir -p proof/phase3-destroy
 OUT=proof/phase3-destroy/verify-destroyed.txt

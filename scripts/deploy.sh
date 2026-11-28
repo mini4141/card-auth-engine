@@ -6,6 +6,7 @@ cd "$(dirname "$0")/.."
 export AWS_PROFILE=card-auth-engine-deployer
 export AWS_REGION=ap-southeast-2 AWS_DEFAULT_REGION=ap-southeast-2
 export AWS_PAGER=""
+export MSYS_NO_PATHCONV=1   # Git Bash must not rewrite /ecs/... style arguments
 OUT=proof/phase2-cloud
 TF="terraform -chdir=infra"
 redact() { sed -E 's/[0-9]{12}/<ACCOUNT_ID>/g; s/(AKIA|ASIA)[A-Z0-9]{16}/<ACCESS_KEY>/g'; }
@@ -64,40 +65,5 @@ BASE_URL="$BASE" scripts/reconcile.sh --ignore-naive 2>&1 | tee "$OUT/logs/cloud
 echo "== dashboard screenshots (live traffic through the ALB)"
 BASE_URL="$BASE" scripts/capture-proof.sh phase2-cloud
 
-echo "== AWS-side evidence"
-$TF output -json | redact > "$OUT/logs/terraform-outputs.json"
-MSK_ARN=$($TF output -raw msk_cluster_arn)
-aws kafka describe-cluster-v2 --cluster-arn "$MSK_ARN" | redact > "$OUT/logs/msk-describe.json"
-{
-  echo "# Deployed resources ($(date -u +%Y-%m-%dT%H:%M:%SZ)), region $AWS_REGION"
-  echo; echo "## ECS services"
-  aws ecs describe-services --cluster card-auth-cluster --services auth-service settlement-service notification-service \
-    --query 'services[].{service:serviceName,desired:desiredCount,running:runningCount,status:status,launchType:launchType}' --output table
-  echo; echo "## Load balancer"
-  aws elbv2 describe-load-balancers --names card-auth-alb --query 'LoadBalancers[].{name:LoadBalancerName,type:Type,scheme:Scheme,state:State.Code,dns:DNSName}' --output table
-  echo; echo "## RDS"
-  aws rds describe-db-instances --db-instance-identifier card-auth-postgres --query 'DBInstances[].{id:DBInstanceIdentifier,engine:Engine,version:EngineVersion,class:DBInstanceClass,status:DBInstanceStatus,public:PubliclyAccessible,multiAz:MultiAZ}' --output table
-  echo; echo "## ElastiCache"
-  aws elasticache describe-cache-clusters --cache-cluster-id card-auth-redis --query 'CacheClusters[].{id:CacheClusterId,engine:Engine,version:EngineVersion,node:CacheNodeType,status:CacheClusterStatus}' --output table
-  echo; echo "## DynamoDB"
-  aws dynamodb describe-table --table-name auth_log --query 'Table.{name:TableName,status:TableStatus,billing:BillingModeSummary.BillingMode,items:ItemCount,keys:KeySchema}' --output json
-  echo; echo "## MSK Serverless"
-  aws kafka list-clusters-v2 --query 'ClusterInfoList[?contains(ClusterName,`card-auth`)].{name:ClusterName,type:ClusterType,state:State}' --output table
-  echo; echo "## ECR"
-  aws ecr describe-repositories --query 'repositories[?starts_with(repositoryName,`card-auth/`)].repositoryName' --output table
-  echo; echo "## Log groups"
-  aws logs describe-log-groups --log-group-name-prefix /ecs/card-auth --query 'logGroups[].{name:logGroupName,retentionDays:retentionInDays}' --output table
-  echo; echo "## Tagged resources (Project=card-auth-engine)"
-  aws resourcegroupstaggingapi get-resources --tag-filters Key=Project,Values=card-auth-engine --query 'ResourceTagMappingList[].ResourceARN' --output text | tr '\t' '\n'
-} 2>&1 | redact > "$OUT/resources.txt"
-
-echo "== CloudWatch latency graph"
-START=$(cat .local/deploy-started-at)
-aws cloudwatch list-metrics --namespace card-auth-engine --metric-name auth.latency.max --output json > .local/cw-metrics.json || true
-node scripts/proof/cloudwatch-widget.mjs .local/cw-metrics.json "$START" > .local/cw-widget.json || true
-if [ -s .local/cw-widget.json ]; then
-  aws cloudwatch get-metric-widget-image --metric-widget file://.local/cw-widget.json --output text --query MetricWidgetImage | base64 -d > "$OUT/screenshots/02-cloudwatch-latency.png" \
-    || echo "metric widget image failed"
-fi
-aws logs tail /ecs/card-auth/auth-service --since 30m --format short 2>/dev/null | grep -E "authorisation|reconciliation" | tail -30 | redact > "$OUT/logs/cloud-auth-service-sample.log" || true
+scripts/capture-cloud-evidence.sh "$BASE"
 echo "deploy + proof done. ALB: $BASE   (now run scripts/destroy.sh)"

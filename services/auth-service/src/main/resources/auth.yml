@@ -55,10 +55,7 @@ management:
   endpoint.health.probes.enabled: true
   tracing.sampling.probability: 1.0
   metrics.tags.application: auth-service
-  cloudwatch.metrics.export:
-    enabled: ${CLOUDWATCH_METRICS_ENABLED:false}
-    namespace: card-auth-engine
-    step: 30s
+  cloudwatch.metrics.export.enabled: ${CLOUDWATCH_METRICS_ENABLED:false}
 
 logging:
   structured.format.console: logstash

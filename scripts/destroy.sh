@@ -6,6 +6,7 @@ cd "$(dirname "$0")/.."
 export AWS_PROFILE=card-auth-engine-deployer
 export AWS_REGION=ap-southeast-2 AWS_DEFAULT_REGION=ap-southeast-2
 export AWS_PAGER=""
+export MSYS_NO_PATHCONV=1
 TF="terraform -chdir=infra"
 
 echo "== scale ECS services to 0 (so nothing blocks the destroy)"

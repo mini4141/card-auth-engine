@@ -1,0 +1,69 @@
+{
+  "alb_dns_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "card-auth-alb-1022655889.ap-southeast-2.elb.amazonaws.com"
+  },
+  "dynamodb_table": {
+    "sensitive": false,
+    "type": "string",
+    "value": "auth_log"
+  },
+  "ecr_repositories": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "auth-service": "string",
+        "notification-service": "string",
+        "settlement-service": "string"
+      }
+    ],
+    "value": {
+      "auth-service": "<ACCOUNT_ID>.dkr.ecr.ap-southeast-2.amazonaws.com/card-auth/auth-service",
+      "notification-service": "<ACCOUNT_ID>.dkr.ecr.ap-southeast-2.amazonaws.com/card-auth/notification-service",
+      "settlement-service": "<ACCOUNT_ID>.dkr.ecr.ap-southeast-2.amazonaws.com/card-auth/settlement-service"
+    }
+  },
+  "ecs_cluster": {
+    "sensitive": false,
+    "type": "string",
+    "value": "card-auth-cluster"
+  },
+  "log_groups": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "/ecs/card-auth/auth-service",
+      "/ecs/card-auth/notification-service",
+      "/ecs/card-auth/settlement-service"
+    ]
+  },
+  "msk_bootstrap_brokers": {
+    "sensitive": false,
+    "type": "string",
+    "value": "boot-uqkjtfeq.c3.kafka-serverless.ap-southeast-2.amazonaws.com:9098"
+  },
+  "msk_cluster_arn": {
+    "sensitive": false,
+    "type": "string",
+    "value": "arn:aws:kafka:ap-southeast-2:<ACCOUNT_ID>:cluster/card-auth-kafka/8d62cbf5-c0c9-4c6e-9c8f-8c7189a09bba-s3"
+  },
+  "rds_endpoint": {
+    "sensitive": false,
+    "type": "string",
+    "value": "card-auth-postgres.cxgg82kqq21y.ap-southeast-2.rds.amazonaws.com"
+  },
+  "redis_endpoint": {
+    "sensitive": false,
+    "type": "string",
+    "value": "card-auth-redis.ufug8o.0001.apse2.cache.amazonaws.com"
+  }
+}
