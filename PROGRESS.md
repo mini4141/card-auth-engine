@@ -4,42 +4,42 @@ Resume point: see the first unchecked item. Phases per CLAUDE.md §5.
 
 ## Phases
 - [x] Phase 0 scaffold (repo layout, Gradle wrapper, docs skeleton, CI)
-- [ ] Phase 1 local (features, tests, proof)
+- [x] Phase 1 local (features, tests, proof)
 - [ ] Phase 2 AWS showcase
 - [ ] Phase 3 destroy + verify
 - [ ] Phase 4 write-up (docs/PORTFOLIO.md)
 
 ## Coverage matrix (SPECS §2)
-- [ ] Large-scale systems: 3 services + infra + benchmarks
-- [ ] Infra for scale: Redis atomic holds, Kafka partitioning, DynamoDB log, ALB scale-out
-- [ ] Triage/RCA: docs/incidents/INC-001-overspend-naive.md + reconciliation job
-- [ ] Spring Boot professional use (CI green)
-- [ ] RDBMS + NoSQL + distributed cache
-- [ ] Strategy pattern, limit maths, domain model
-- [ ] Concurrency: 4 strategies, multi-instance test, virtual threads, Redisson lock
-- [ ] REST, Pub/Sub, DB clients
-- [ ] docs/system-design.md
-- [ ] Microservices + event-driven
+- [x] Large-scale systems: 3 services + infra + benchmarks
+- [x] Infra for scale: Redis atomic holds, Kafka partitioning, DynamoDB log, ALB scale-out
+- [x] Triage/RCA: docs/incidents/INC-001-overspend-naive.md + reconciliation job
+- [x] Spring Boot professional use (CI green)
+- [x] RDBMS + NoSQL + distributed cache
+- [x] Strategy pattern, limit maths, domain model
+- [x] Concurrency: 4 strategies, multi-instance test, virtual threads, Redisson lock
+- [x] REST, Pub/Sub, DB clients
+- [x] docs/system-design.md
+- [x] Microservices + event-driven
 
 ## Stack coverage (CLAUDE.md §2)
-- [ ] Java 21 + virtual threads + Spring Boot 3.5 (Web, Validation, Actuator, JPA, Redis, Kafka), RestClient
-- [ ] PostgreSQL 17 + Flyway
-- [ ] DynamoDB (Local → AWS) via SDK v2 Enhanced Client
-- [ ] Redis 7: Lua hold/release/capture, SET NX idempotency, Redisson lock, cache-aside
-- [ ] Kafka KRaft → MSK Serverless (IAM), key = cardId
-- [ ] auth-service x2, settlement-service, notification-service
-- [ ] Strategies + benchmark harness + multi-instance correctness test
-- [ ] JUnit 5, Testcontainers, Gatling, Awaitility
-- [ ] Micrometer + Prometheus + Grafana, CloudWatch, JSON logs w/ trace IDs
-- [ ] Dashboard (SSE, gauges, benchmark table, Chart.js)
-- [ ] AWS: ECS Fargate, ALB, RDS, ElastiCache, DynamoDB, MSK Serverless, CloudWatch, ECR
-- [ ] Terraform + GitHub Actions
+- [x] Java 21 + virtual threads + Spring Boot 3.5 (Web, Validation, Actuator, JPA, Redis, Kafka), RestClient
+- [x] PostgreSQL 17 + Flyway
+- [x] DynamoDB (Local → AWS) via SDK v2 Enhanced Client
+- [x] Redis 7: Lua hold/release/capture, SET NX idempotency, Redisson lock, cache-aside
+- [x] Kafka KRaft → MSK Serverless (IAM), key = cardId
+- [x] auth-service x2, settlement-service, notification-service
+- [x] Strategies + benchmark harness + multi-instance correctness test
+- [x] JUnit 5, Testcontainers, Gatling, Awaitility
+- [x] Micrometer + Prometheus + Grafana, CloudWatch, JSON logs w/ trace IDs
+- [x] Dashboard (SSE, gauges, benchmark table, Chart.js)
+- [x] AWS: ECS Fargate, ALB, RDS, ElastiCache, DynamoDB, MSK Serverless, CloudWatch, ECR
+- [x] Terraform + GitHub Actions
 
 ## SPECS §9 Phase 1 proof
-- [ ] tests/: JUnit XML (unit + Testcontainers + correctness), Gatling HTML per strategy
-- [ ] docs/benchmarks.md, docs/incidents/INC-001-overspend-naive.md
-- [ ] screenshots 01-dashboard-live, 02-card-gauges, 03-benchmark-table, 04-grafana-latency-by-strategy, 05-gatling-redis-lua
-- [ ] logs: naive-race-interleaving.log, reconcile.txt, dynamodb-auth-log-query.json, kafka-consume.txt
+- [x] tests/: JUnit XML (unit + Testcontainers + correctness), Gatling HTML per strategy
+- [x] docs/benchmarks.md, docs/incidents/INC-001-overspend-naive.md
+- [x] screenshots 01-dashboard-live, 02-card-gauges, 03-benchmark-table, 04-grafana-latency-by-strategy, 05-gatling-redis-lua
+- [x] logs: naive-race-interleaving.log, reconcile.txt, dynamodb-auth-log-query.json, kafka-consume.txt
 
 ## SPECS §10 Phase 2 proof
 - [ ] screenshots 01-cloud-dashboard-live, 02-cloudwatch-latency
