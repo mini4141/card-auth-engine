@@ -1,0 +1,47 @@
+server:
+  port: 8081
+  shutdown: graceful
+
+spring:
+  application.name: settlement-service
+  threads.virtual.enabled: true
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:cardauth}
+    username: ${POSTGRES_USER:cardauth}
+    password: ${POSTGRES_PASSWORD:cardauth}
+    hikari.maximum-pool-size: 10
+  flyway:
+    locations: classpath:db/settlement
+    table: flyway_settlement
+    baseline-on-migrate: true
+    baseline-version: 0
+  data.redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:9092}
+    consumer:
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      concurrency: 3
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+
+app:
+  kafka:
+    partitions: ${KAFKA_PARTITIONS:6}
+    replicas: ${KAFKA_REPLICAS:1}
+  batch.cron: "0 0 2 * * *"
+
+management:
+  endpoints.web.exposure.include: health,prometheus,info
+  endpoint.health.probes.enabled: true
+  tracing.sampling.probability: 1.0
+  metrics.tags.application: settlement-service
+
+logging:
+  structured.format.console: logstash

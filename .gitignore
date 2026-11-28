@@ -1,0 +1,14 @@
+.gradle/
+build/
+.idea/
+*.iml
+.env
+.local/
+node_modules/
+infra/.terraform/
+infra/*.tfstate*
+infra/*.tfvars
+infra/tfplan
+infra/.terraform.lock.hcl.bak
+loadtest/gatling/build/
+*.log.tmp

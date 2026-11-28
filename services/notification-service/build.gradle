@@ -1,0 +1,22 @@
+plugins { id 'org.springframework.boot' }
+
+dependencies {
+    implementation project(':libs:domain')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'software.amazon.msk:aws-msk-iam-auth:2.3.2'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+// The dashboard (static assets) and the latest benchmark JSON are packaged into this service.
+processResources {
+    from('../../dashboard') { into 'static/dashboard' }
+    from('../../docs') { include 'benchmarks.json'; into 'bench' }
+}
+
+jar { enabled = true; archiveClassifier = 'plain' }

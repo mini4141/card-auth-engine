@@ -1,0 +1,32 @@
+plugins {
+    id 'org.springframework.boot' version '3.5.7' apply false
+    id 'io.spring.dependency-management' version '1.1.7' apply false
+    id 'io.gatling.gradle' version '3.14.9' apply false
+}
+
+subprojects {
+    group = 'com.cardauth'
+    version = '0.1.0'
+    repositories { mavenCentral() }
+
+    if (path != ':loadtest:gatling') {
+        apply plugin: 'java-library'
+        apply plugin: 'io.spring.dependency-management'
+        java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
+        dependencyManagement {
+            imports {
+                mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+                mavenBom 'software.amazon.awssdk:bom:2.31.78'
+                mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+            }
+        }
+        tasks.withType(Test).configureEach {
+            useJUnitPlatform()
+            // Docker 29 rejects docker-java's default API version (1.32); pin a supported one for Testcontainers
+            systemProperty 'api.version', '1.44'
+            environment 'DOCKER_API_VERSION', '1.44'
+            // JUnit XML lands in build/test-results; copied to proof/ by scripts/test-all.sh
+            testLogging { events 'passed', 'failed', 'skipped'; showStandardStreams = false }
+        }
+    }
+}

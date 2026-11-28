@@ -1,0 +1,11 @@
+global: { scrape_interval: 5s }
+scrape_configs:
+  - job_name: auth-service
+    metrics_path: /actuator/prometheus
+    dns_sd_configs: [{ names: [auth-service], type: A, port: 8080 }]
+  - job_name: settlement-service
+    metrics_path: /actuator/prometheus
+    static_configs: [{ targets: ['settlement-service:8081'] }]
+  - job_name: notification-service
+    metrics_path: /actuator/prometheus
+    static_configs: [{ targets: ['notification-service:8082'] }]

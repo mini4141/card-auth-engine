@@ -1,0 +1,66 @@
+server:
+  port: 8080
+  shutdown: graceful
+  tomcat:
+    max-connections: 20000
+    accept-count: 2000
+
+spring:
+  application.name: auth-service
+  threads.virtual.enabled: ${VIRTUAL_THREADS:true}
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:cardauth}
+    username: ${POSTGRES_USER:cardauth}
+    password: ${POSTGRES_PASSWORD:cardauth}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:20}
+      connection-timeout: 30000
+  jpa:
+    open-in-view: false
+    hibernate.ddl-auto: none
+  flyway:
+    locations: classpath:db/auth
+    table: flyway_auth
+    baseline-on-migrate: true
+    baseline-version: 0
+  data.redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP:localhost:9092}
+    producer:
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        enable.idempotence: true
+        linger.ms: 5
+
+app:
+  default-strategy: ${DEFAULT_STRATEGY:redis-lua}
+  instance-id: ${HOSTNAME:local}
+  kafka:
+    partitions: ${KAFKA_PARTITIONS:6}
+    replicas: ${KAFKA_REPLICAS:1}
+  dynamo:
+    endpoint: ${DYNAMODB_ENDPOINT:}
+    region: ${AWS_REGION:ap-southeast-2}
+    table: ${DYNAMODB_TABLE:auth_log}
+    create-table: ${DYNAMODB_CREATE_TABLE:true}
+  reconcile:
+    interval-ms: ${RECONCILE_INTERVAL_MS:60000}
+
+management:
+  endpoints.web.exposure.include: health,prometheus,info,metrics
+  endpoint.health.probes.enabled: true
+  tracing.sampling.probability: 1.0
+  metrics.tags.application: auth-service
+  cloudwatch.metrics.export:
+    enabled: ${CLOUDWATCH_METRICS_ENABLED:false}
+    namespace: card-auth-engine
+    step: 30s
+
+logging:
+  structured.format.console: logstash
+  level:
+    com.cardauth.auth.strategy.NaiveStrategy: ${NAIVE_LOG_LEVEL:INFO}

@@ -1,0 +1,2 @@
+rootProject.name = 'card-auth-engine'
+include 'libs:domain', 'services:auth-service', 'services:settlement-service', 'services:notification-service', 'integration-tests', 'loadtest:gatling'

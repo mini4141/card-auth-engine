@@ -1,0 +1,27 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+      - name: Build and test (unit, Testcontainers, concurrency correctness)
+        run: ./gradlew build --no-daemon
+      - name: Terraform validate
+        uses: hashicorp/setup-terraform@v3
+      - run: terraform -chdir=infra init -backend=false && terraform -chdir=infra validate
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: '**/build/test-results/test/*.xml'

@@ -1,0 +1,13 @@
+dependencies {
+    testImplementation project(':services:auth-service')
+    testImplementation project(':services:settlement-service')
+    testImplementation project(':services:notification-service')
+    testImplementation project(':libs:domain')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:postgresql'
+    testImplementation 'org.testcontainers:kafka'
+    testImplementation 'org.awaitility:awaitility'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
