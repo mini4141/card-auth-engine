@@ -29,5 +29,10 @@ for attempt in 1 2 3; do
   echo "destroy attempt $attempt failed, retrying in 30s"; sleep 30
 done
 
+echo "== deregister leftover ECS task definition revisions (free, but keep the account tidy)"
+for td in $(aws ecs list-task-definitions --family-prefix card-auth- --status ACTIVE --query 'taskDefinitionArns[]' --output text); do
+  aws ecs deregister-task-definition --task-definition "$td" >/dev/null && echo "deregistered $td"
+done
+
 echo "== verify"
 scripts/verify-destroyed.sh

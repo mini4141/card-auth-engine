@@ -19,3 +19,6 @@ Format: date, decision, reason.
 - 2026-11-28 Gatling percentiles are computed inside the simulation (response-time checks) because Gatling 3.14 reports no longer ship `js/stats.json`.
 - 2026-11-28 Cloud: Fargate tasks run in public subnets with public IPs (no NAT gateway); RDS/ElastiCache/MSK sit in private subnets with no internet route; DB credentials come from `random_password` into the (local, gitignored) Terraform state and task env instead of Secrets Manager, to keep the ephemeral showcase simple.
 - 2026-11-28 CI has a second job that runs the Gatling burst against the compose stack (`ONLY_GATLING=1 scripts/test-all.sh`).
+- 2026-11-28 Spring Boot 3 has no CloudWatch export auto-configuration (first deploy published no metrics). `CloudWatchMeterRegistry` is now a hand-wired bean in `InfraConfig`, enabled by `CLOUDWATCH_METRICS_ENABLED`, publishing `auth.*` meters only to keep custom-metric cost near zero.
+- 2026-11-28 Phase 2 ran with a lighter benchmark (300 concurrent, 50 req/s steady) from this PC through the ALB; the stack was up ~50 minutes (target < 2 h) and destroyed immediately afterwards (44 resources, `verify-destroyed` clean).
+- 2026-11-28 Gradle dependency lockfiles were not added (versions are pinned in build files and BOMs); revisit if reproducibility across resolver changes matters.

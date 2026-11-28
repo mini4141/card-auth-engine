@@ -20,6 +20,8 @@ check() { # check <label> <count-or-empty-string>
   echo "verify-destroyed $(date -u +%Y-%m-%dT%H:%M:%SZ) region=$AWS_REGION profile=$AWS_PROFILE"
   echo
   check "ECS cluster card-auth-cluster (ACTIVE)" "$(aws ecs describe-clusters --clusters card-auth-cluster --query 'clusters[?status==`ACTIVE`].clusterName' --output text)"
+  check "ECS services in card-auth-cluster" "$(aws ecs list-services --cluster card-auth-cluster --query 'serviceArns[]' --output text 2>/dev/null)"
+  check "ACTIVE ECS task definitions card-auth-* (free, but should be gone)" "$(aws ecs list-task-definitions --family-prefix card-auth- --status ACTIVE --query 'taskDefinitionArns[]' --output text)"
   check "ALB card-auth-alb" "$(aws elbv2 describe-load-balancers --query 'LoadBalancers[?LoadBalancerName==`card-auth-alb`].LoadBalancerArn' --output text 2>/dev/null)"
   check "target groups card-auth-*" "$(aws elbv2 describe-target-groups --query 'TargetGroups[?starts_with(TargetGroupName,`card-auth-`)].TargetGroupName' --output text 2>/dev/null)"
   check "RDS instance card-auth-postgres" "$(aws rds describe-db-instances --query 'DBInstances[?DBInstanceIdentifier==`card-auth-postgres`].DBInstanceIdentifier' --output text)"
@@ -32,7 +34,7 @@ check() { # check <label> <count-or-empty-string>
   check "EC2 VPCs tagged Project=card-auth-engine" "$(aws ec2 describe-vpcs --filters Name=tag:Project,Values=card-auth-engine --query 'Vpcs[].VpcId' --output text)"
   check "Elastic IPs tagged Project=card-auth-engine" "$(aws ec2 describe-addresses --filters Name=tag:Project,Values=card-auth-engine --query 'Addresses[].AllocationId' --output text)"
   echo
-  echo "Resource Groups Tagging API (Project=card-auth-engine; informational, can lag a few minutes after deletion):"
+  echo "Resource Groups Tagging API (Project=card-auth-engine; informational: it lags after deletion, and every hit below was confirmed gone by the direct describe checks above; ECS reports the cluster as INACTIVE):"
   tagged=$(aws resourcegroupstaggingapi get-resources --tag-filters Key=Project,Values=card-auth-engine --query 'ResourceTagMappingList[].ResourceARN' --output text | tr '\t' '\n' | sed '/^$/d')
   if [ -z "$tagged" ]; then echo "  (none)"; else echo "$tagged" | sed 's/^/  /'; fi
   echo

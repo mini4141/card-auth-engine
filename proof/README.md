@@ -24,7 +24,16 @@ Everything here is produced by scripts (`scripts/capture-proof.sh`, `scripts/tes
 
 ## Phase 2: AWS (ECS Fargate, ALB, RDS, ElastiCache, DynamoDB, MSK Serverless)
 
-See [phase2-cloud/](phase2-cloud/): `resources.txt` (deployed resources), `screenshots/` (cloud dashboard, CloudWatch latency graph), `logs/` (cloud benchmarks, reconcile, MSK describe), `tests/gatling-cloud/`.
+| Artifact | What it proves |
+|---|---|
+| [phase2-cloud/resources.txt](phase2-cloud/resources.txt) | Deployed ECS services (2× auth, settlement, notification), ALB, RDS, ElastiCache, DynamoDB, MSK Serverless, ECR, log groups, tagged resources |
+| [phase2-cloud/screenshots/01-cloud-dashboard-live.png](phase2-cloud/screenshots/01-cloud-dashboard-live.png) | The dashboard served through the ALB with APPROVED and SETTLED rows flowing through MSK Serverless (its benchmark table is the local run bundled in the image) |
+| [phase2-cloud/screenshots/02-cloudwatch-latency.png](phase2-cloud/screenshots/02-cloudwatch-latency.png) | `aws cloudwatch get-metric-widget-image`: auth.latency.max per strategy from the Micrometer CloudWatch registry |
+| [phase2-cloud/logs/cloud-benchmarks.json](phase2-cloud/logs/cloud-benchmarks.json) (+ `.md`) | Same benchmark suite against the ALB (300 concurrent / 50 req/s): naive overspends, safe strategies approve exactly 100 |
+| [phase2-cloud/logs/cloud-reconcile.txt](phase2-cloud/logs/cloud-reconcile.txt) | Cloud reconciliation: zero drift on safe-strategy cards |
+| [phase2-cloud/logs/msk-describe.json](phase2-cloud/logs/msk-describe.json) | MSK Serverless cluster with IAM auth, ACTIVE |
+| [phase2-cloud/logs/cloud-dynamodb-auth-log-query.json](phase2-cloud/logs/cloud-dynamodb-auth-log-query.json) | DynamoDB audit items read back through the API in AWS (plus [scan count](phase2-cloud/logs/cloud-dynamodb-scan-count.json)) |
+| [phase2-cloud/tests/gatling-cloud/](phase2-cloud/tests/gatling-cloud/) | Gatling reports from the cloud run |
 
 ## Phase 3: destroy
 

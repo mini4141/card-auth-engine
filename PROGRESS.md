@@ -5,9 +5,9 @@ Resume point: see the first unchecked item. Phases per CLAUDE.md §5.
 ## Phases
 - [x] Phase 0 scaffold (repo layout, Gradle wrapper, docs skeleton, CI)
 - [x] Phase 1 local (features, tests, proof)
-- [ ] Phase 2 AWS showcase
-- [ ] Phase 3 destroy + verify
-- [ ] Phase 4 write-up (docs/PORTFOLIO.md)
+- [x] Phase 2 AWS showcase
+- [x] Phase 3 destroy + verify
+- [x] Phase 4 write-up (docs/PORTFOLIO.md)
 
 ## Coverage matrix (SPECS §2)
 - [x] Large-scale systems: 3 services + infra + benchmarks
@@ -42,11 +42,11 @@ Resume point: see the first unchecked item. Phases per CLAUDE.md §5.
 - [x] logs: naive-race-interleaving.log, reconcile.txt, dynamodb-auth-log-query.json, kafka-consume.txt
 
 ## SPECS §10 Phase 2 proof
-- [ ] screenshots 01-cloud-dashboard-live, 02-cloudwatch-latency
-- [ ] tests/gatling-cloud/, logs/cloud-benchmarks.json, logs/cloud-reconcile.txt, logs/msk-describe.json, resources.txt
+- [x] screenshots 01-cloud-dashboard-live, 02-cloudwatch-latency
+- [x] tests/gatling-cloud/, logs/cloud-benchmarks.json, logs/cloud-reconcile.txt, logs/msk-describe.json, resources.txt
 
 ## SPECS §11 Phase 3
-- [ ] terraform destroy done, verify-destroyed.txt shows nothing billable
+- [x] terraform destroy done, verify-destroyed.txt shows nothing billable
 
 ## Definition of done (CLAUDE.md §12)
-- [ ] stack covered  - [ ] phase1 proof + CI green  - [ ] phase2 proof  - [ ] phase3 destroyed  - [ ] PORTFOLIO.md + README pushed
+- [x] stack covered  - [x] phase1 proof + CI green  - [x] phase2 proof  - [x] phase3 destroyed  - [x] PORTFOLIO.md + README pushed

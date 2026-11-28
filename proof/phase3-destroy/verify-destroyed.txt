@@ -1,0 +1,27 @@
+verify-destroyed 2026-11-28T11:25:37Z region=ap-southeast-2 profile=card-auth-engine-deployer
+
+OK    ECS cluster card-auth-cluster (ACTIVE): none
+OK    ECS services in card-auth-cluster: none
+OK    ACTIVE ECS task definitions card-auth-* (free, but should be gone): none
+OK    ALB card-auth-alb: none
+OK    target groups card-auth-*: none
+OK    RDS instance card-auth-postgres: none
+OK    ElastiCache cluster card-auth-redis: none
+OK    MSK clusters card-auth*: none
+OK    DynamoDB table auth_log: none
+OK    ECR repositories card-auth/*: none
+OK    CloudWatch log groups /ecs/card-auth*: none
+OK    NAT gateways (any state but deleted) in card-auth VPCs: none
+OK    EC2 VPCs tagged Project=card-auth-engine: none
+OK    Elastic IPs tagged Project=card-auth-engine: none
+
+Resource Groups Tagging API (Project=card-auth-engine; informational: it lags after deletion, and every hit below was confirmed gone by the direct describe checks above; ECS reports the cluster as INACTIVE):
+  arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:service/card-auth-cluster/notification-service
+  arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:service/card-auth-cluster/auth-service
+  arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:task-definition/card-auth-auth-service:1
+  arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:service/card-auth-cluster/settlement-service
+  arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:cluster/card-auth-cluster
+  arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:task-definition/card-auth-notification-service:1
+  arn:aws:ecs:ap-southeast-2:<ACCOUNT_ID>:task-definition/card-auth-settlement-service:1
+
+RESULT: nothing billable remains
